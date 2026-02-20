@@ -319,12 +319,13 @@ def leave_request_page():
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-        # Auto-create admin if not exists
         if not User.query.filter_by(email="admin@gmail.com").first():
             hashed_pw = bcrypt.generate_password_hash("admin123").decode("utf-8")
             admin = User(name="Admin", email="admin@gmail.com", password=hashed_pw, role="admin")
             db.session.add(admin)
             db.session.commit()
-            print("Admin Created Successfully!")
 
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
