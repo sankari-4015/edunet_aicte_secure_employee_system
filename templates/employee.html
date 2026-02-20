@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3 class="mb-4">Welcome {{ current_user.name }}</h3>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="card p-4 text-center shadow">
+            <h5>My Profile</h5>
+            <p>View & update profile</p>
+            <a href="#" class="btn btn-primary btn-custom">Open</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4 text-center shadow">
+            <h5>Attendance</h5>
+            <p>Check in / Check out</p>
+            <a href="#" class="btn btn-success btn-custom">Open</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4 text-center shadow">
+            <h5>Leave Request</h5>
+            <p>Apply leave</p>
+            <a href="#" class="btn btn-warning btn-custom">Open</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

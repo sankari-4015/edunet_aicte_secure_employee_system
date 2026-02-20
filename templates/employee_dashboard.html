@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-4 shadow">
+    <h3>Welcome, {{ current_user.name }}</h3>
+    <p>Email: {{ current_user.email }}</p>
+    <p>Role: {{ current_user.role|capitalize }}</p>
+
+    <hr />
+
+    <h4>Your Dashboard</h4>
+
+    <div class="row g-4 mt-3">
+        <div class="col-md-4">
+            <div class="card p-3 text-center shadow">
+                <h5>My Profile</h5>
+                <p>View & update profile</p>
+                <a href="#" class="btn btn-primary btn-custom">Open</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3 text-center shadow">
+                <h5>Attendance</h5>
+                <p>Check in / Check out</p>
+                <a href="{{ url_for('attendance_page') }}" class="btn btn-success btn-custom">Open</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3 text-center shadow">
+                <h5>Leave Request</h5>
+                <p>Apply leave</p>
+                <a href="{{ url_for('leave_request_page') }}" class="btn btn-warning btn-custom">Open</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

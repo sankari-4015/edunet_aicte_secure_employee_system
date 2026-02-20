@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Recent Login Attempts</h2>
+
+<table class="table table-dark table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Timestamp</th>
+            <th>Success</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for attempt in attempts %}
+        <tr>
+            <td>{{ attempt.email }}</td>
+            <td>{{ attempt.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            <td>
+                {% if attempt.success %}
+                    <span class="badge bg-success">Success</span>
+                {% else %}
+                    <span class="badge bg-danger">Failed</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary mt-3">Back to Admin Dashboard</a>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Attendance</h3>
+
+<form action="{{ url_for('checkin') }}" method="get">
+    <button type="submit" class="btn btn-primary">Check In</button>
+</form>
+
+<form action="{{ url_for('checkout') }}" method="get" style="margin-top:10px;">
+    <button type="submit" class="btn btn-secondary">Check Out</button>
+</form>
+{% endblock %}

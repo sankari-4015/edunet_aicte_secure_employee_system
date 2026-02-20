@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Admin Dashboard</h3>
+
+<table class="table table-bordered bg-white">
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Role</th>
+<th>Locked</th>
+<th>Action</th>
+</tr>
+
+{% for user in users %}
+<tr>
+<td>{{ user.id }}</td>
+<td>{{ user.name }}</td>
+<td>{{ user.email }}</td>
+<td>{{ user.role }}</td>
+<td>{{ user.account_locked }}</td>
+<td>
+{% if user.account_locked %}
+<a href="/unlock/{{ user.id }}" class="btn btn-warning btn-sm">Unlock</a>
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

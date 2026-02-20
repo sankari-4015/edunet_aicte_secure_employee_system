@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<div class="row mt-4 g-3">
+    <div class="col-md-3">
+        <div class="card p-3 text-center">
+            <h5>Total Users</h5><h3>{{ users|length }}</h3>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3 text-center">
+            <h5>Locked Accounts</h5>
+            <h3>{{ users|selectattr('account_locked')|list|length }}</h3>
+        </div>
+    </div>
+</div>
+<hr class="my-4">
+<h4>Manage Users</h4>
+<table class="table table-dark table-striped mt-3">
+    <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Action</th></tr></thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role|capitalize }}</td>
+            <td>{% if user.account_locked %}<span class="badge bg-danger">Locked</span>{% else %}<span class="badge bg-success">Active</span>{% endif %}</td>
+            <td>{% if user.account_locked %}<a href="{{ url_for('unlock', user_id=user.id) }}" class="btn btn-success btn-sm">Unlock</a>{% else %}<button class="btn btn-secondary btn-sm" disabled>Unlock</button>{% endif %}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('login_attempts') }}" class="btn btn-info mt-3">See Login Attempts</a>
+{% endblock %}
